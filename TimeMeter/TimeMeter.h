@@ -18,15 +18,13 @@ public:
     ~TimeMeter();
 
 private slots:
-    void on_start_clicked();
 
-    void on_stop_clicked();
+    void on_startButton_clicked();
 
-    //QString on_Time_control_textChanged(const QString &arg1);
+    void on_stopButton_clicked();
 
 private:
    QString secondsToString(qint64 seconds);
-    //int test();
     Ui::TimeMeter *ui;
     QDateTime m_oStartTime;
     QDateTime m_oEndTime;

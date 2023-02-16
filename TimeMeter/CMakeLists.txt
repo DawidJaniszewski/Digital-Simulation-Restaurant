@@ -16,6 +16,8 @@ set(PROJECT_SOURCES
         main.cpp
         TimeMeter.cpp
         TimeMeter.h
+        ProjektsBuffer.h
+        ProjektsBuffer.cpp
         TimeMeter.ui
 )
 

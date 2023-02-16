@@ -35,6 +35,5 @@ void TimeMeter::on_stopButton_clicked()
     m_oEndTime=QDateTime::currentDateTime();
     QString tst=secondsToString(m_oStartTime.secsTo(m_oEndTime));
     ui->Time_controlTemporary->setText(tst);
-
 }
 

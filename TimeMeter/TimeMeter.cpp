@@ -16,6 +16,8 @@ TimeMeter::TimeMeter(QWidget *parent)
     m_ProjectsBuffer->AddTaskToProject("Test Project1", "task2");
     m_ProjectsBuffer->AddTaskToProject("Test Project1", "task3");
     m_ProjectsBuffer->AddTaskToProject("Test Project2", "task3");
+    ui->comboBoxProject->addItems(m_ProjectsBuffer->GetListOfProjects());
+    ui->comboBoxTask->addItems(m_ProjectsBuffer->GetListOfTask(ui->comboBoxProject->currentText()));
 }
 
 
@@ -52,5 +54,12 @@ void TimeMeter::on_pushButtonAdd_clicked()
     ProjectViev ProjectViewWindow(m_ProjectsBuffer);
     ProjectViewWindow.setModal(true);
     ProjectViewWindow.exec();
+}
+
+
+void TimeMeter::on_comboBoxProject_currentTextChanged(const QString &arg1)
+{
+     ui->comboBoxTask->clear();
+     ui->comboBoxTask->addItems(m_ProjectsBuffer->GetListOfTask(arg1));
 }
 

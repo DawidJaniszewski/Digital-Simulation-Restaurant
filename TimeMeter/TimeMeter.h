@@ -26,6 +26,8 @@ private slots:
 
     void on_pushButtonAdd_clicked();
 
+    void on_comboBoxProject_currentTextChanged(const QString &arg1);
+
 private:
    QString secondsToString(qint64 seconds);
     Ui::TimeMeter *ui;

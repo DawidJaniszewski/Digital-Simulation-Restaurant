@@ -23,6 +23,10 @@ private slots:
 
     void on_listWidgetProjects_itemPressed(QListWidgetItem *item);
 
+    void on_pushButtonUp_clicked();
+
+    void on_pushButtonDelete_2_clicked();
+
 private:
     Ui::ProjectViev *ui;
     ProjectsBuffer* m_ProjectsBuffer;

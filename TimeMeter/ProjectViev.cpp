@@ -41,3 +41,27 @@ void ProjectViev::on_listWidgetProjects_itemPressed(QListWidgetItem *item)
     }
 }
 
+
+void ProjectViev::on_pushButtonUp_clicked()
+{
+    m_ProjectsBuffer->ChangePositionOfProject(ui->listWidgetProjects->selectedItems().at(0)->text(), ProjectIndex::eDecrement);
+    QList<QString> listOfProject =m_ProjectsBuffer->GetListOfProjects();
+     ui->listWidgetProjects->clear();
+    for(int i=0;i<listOfProject.count();i++)
+    {
+        ui->listWidgetProjects->addItem(listOfProject[i]);
+    }
+}
+
+
+void ProjectViev::on_pushButtonDelete_2_clicked()
+{
+    m_ProjectsBuffer->ChangePositionOfProject(ui->listWidgetProjects->selectedItems().at(0)->text(), ProjectIndex::eIncrement);
+    QList<QString> listOfProject =m_ProjectsBuffer->GetListOfProjects();
+     ui->listWidgetProjects->clear();
+    for(int i=0;i<listOfProject.count();i++)
+    {
+        ui->listWidgetProjects->addItem(listOfProject[i]);
+    }
+}
+

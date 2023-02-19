@@ -45,3 +45,45 @@ const QVector<QString> &ProjectsBuffer::GetListOfTask(const QString &ProjectName
         }
     }
 }
+
+bool ProjectsBuffer::ChangePositionOfProject(const QString &ProjectNameString, ProjectIndex Operation)
+{
+int iPositionToChange=GetIdOfProject(ProjectNameString);
+if(iPositionToChange>-1)
+{
+    switch (Operation) {
+    case ProjectIndex::eIncrement:
+        if(iPositionToChange<m_ListOfProjects.size())
+        {
+            m_ListOfProjects.swapItemsAt(iPositionToChange,iPositionToChange+1);
+            m_ListOfVectorOfTasks.swapItemsAt(iPositionToChange,iPositionToChange+1);
+        }
+        break;
+    case ProjectIndex::eDecrement:
+        if(iPositionToChange>0)
+        {
+            m_ListOfProjects.swapItemsAt(iPositionToChange,iPositionToChange-1);
+            m_ListOfVectorOfTasks.swapItemsAt(iPositionToChange,iPositionToChange+1);
+        }
+        break;
+    default:
+        break;
+    }
+}
+}
+
+int ProjectsBuffer::GetIdOfProject(const QString &ProjectNameString)
+{
+    int iLengthOfList=m_ListOfProjects.length();
+    int iPositionOfProject=-1;
+
+    for(int i=0;i<iLengthOfList;i++)
+    {
+        if(m_ListOfProjects.at(i) == ProjectNameString)
+        {
+            iPositionOfProject=i;
+        }
+    }
+    return iPositionOfProject;
+}
+

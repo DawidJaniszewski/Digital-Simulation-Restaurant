@@ -162,21 +162,21 @@
     </property>
     <layout class="QGridLayout" name="gridLayout">
      <item row="1" column="0">
-      <widget class="QPushButton" name="stopButton">
+      <widget class="QPushButton" name="pushButtonStop">
        <property name="text">
         <string>Stop</string>
        </property>
       </widget>
      </item>
      <item row="0" column="0">
-      <widget class="QPushButton" name="startButton">
+      <widget class="QPushButton" name="pushButtonStart">
        <property name="text">
         <string>Start</string>
        </property>
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QPushButton" name="addButton">
+      <widget class="QPushButton" name="pushButtonAdd">
        <property name="text">
         <string>Add</string>
        </property>

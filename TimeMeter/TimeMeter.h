@@ -1,6 +1,7 @@
 #ifndef TIMEMETER_H
 #define TIMEMETER_H
 
+#include "ProjectsBuffer.h"
 #include <QMainWindow>
 #include <QDateTime>
 
@@ -19,14 +20,17 @@ public:
 
 private slots:
 
-    void on_startButton_clicked();
+    void on_pushButtonStart_clicked();
 
-    void on_stopButton_clicked();
+    void on_pushButtonStop_clicked();
+
+    void on_pushButtonAdd_clicked();
 
 private:
    QString secondsToString(qint64 seconds);
     Ui::TimeMeter *ui;
     QDateTime m_oStartTime;
     QDateTime m_oEndTime;
+    ProjectsBuffer* m_ProjektsBuffer;
 };
 #endif // TIMEMETER_H

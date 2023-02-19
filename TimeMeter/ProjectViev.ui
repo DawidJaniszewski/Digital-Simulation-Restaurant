@@ -63,7 +63,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QListView" name="listViewTasks">
+  <widget class="QListWidget" name="listWidgetTasks">
    <property name="geometry">
     <rect>
      <x>240</x>

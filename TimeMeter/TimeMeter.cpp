@@ -8,7 +8,14 @@ TimeMeter::TimeMeter(QWidget *parent)
     , ui(new Ui::TimeMeter)
 {
     ui->setupUi(this);
-    m_ProjektsBuffer = new ProjectsBuffer();
+    m_ProjectsBuffer = new ProjectsBuffer();
+    m_ProjectsBuffer->AddProjektToList("Test Project1");
+    m_ProjectsBuffer->AddProjektToList("Test Project2");
+    m_ProjectsBuffer->AddProjektToList("Test Project3");
+    m_ProjectsBuffer->AddTaskToProject("Test Project1", "task1");
+    m_ProjectsBuffer->AddTaskToProject("Test Project1", "task2");
+    m_ProjectsBuffer->AddTaskToProject("Test Project1", "task3");
+    m_ProjectsBuffer->AddTaskToProject("Test Project2", "task3");
 }
 
 
@@ -42,7 +49,7 @@ void TimeMeter::on_pushButtonStart_clicked()
 
 void TimeMeter::on_pushButtonAdd_clicked()
 {
-    ProjectViev ProjectViewWindow;
+    ProjectViev ProjectViewWindow(m_ProjectsBuffer);
     ProjectViewWindow.setModal(true);
     ProjectViewWindow.exec();
 }

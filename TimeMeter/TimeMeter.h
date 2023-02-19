@@ -31,6 +31,6 @@ private:
     Ui::TimeMeter *ui;
     QDateTime m_oStartTime;
     QDateTime m_oEndTime;
-    ProjectsBuffer* m_ProjektsBuffer;
+    ProjectsBuffer* m_ProjectsBuffer;
 };
 #endif // TIMEMETER_H

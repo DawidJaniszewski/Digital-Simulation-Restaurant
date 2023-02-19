@@ -1,6 +1,8 @@
 #ifndef PROJECTVIEV_H
 #define PROJECTVIEV_H
 
+#include "ProjectsBuffer.h"
+#include "qlistwidget.h"
 #include <QDialog>
 
 namespace Ui {
@@ -12,16 +14,18 @@ class ProjectViev : public QDialog
     Q_OBJECT
 
 public:
-    explicit ProjectViev(QWidget *parent = nullptr);
+    explicit ProjectViev(ProjectsBuffer* ProjectsBuffer,QWidget *parent = nullptr);
     ~ProjectViev();
 
 private slots:
-    void on_pushButton_clicked();
 
     void on_pushButtonAdd_clicked();
 
+    void on_listWidgetProjects_itemPressed(QListWidgetItem *item);
+
 private:
     Ui::ProjectViev *ui;
+    ProjectsBuffer* m_ProjectsBuffer;
 };
 
 #endif // PROJECTVIEV_H

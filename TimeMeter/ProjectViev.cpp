@@ -2,13 +2,17 @@
 #include "qlistwidget.h"
 #include "ui_ProjectViev.h"
 
-ProjectViev::ProjectViev(QWidget *parent) :
+ProjectViev::ProjectViev(ProjectsBuffer* ProjectsBuffer, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ProjectViev)
 {
     ui->setupUi(this);
-      //  ui->listViewProjects->addAction("test");
-      //  ui->listViewProjects->Add
+    m_ProjectsBuffer=ProjectsBuffer;
+    QList<QString> listOfProject =m_ProjectsBuffer->GetListOfProjects();
+    for(int i=0;i<listOfProject.count();i++)
+    {
+        ui->listWidgetProjects->addItem(listOfProject[i]);
+    }
 }
 
 ProjectViev::~ProjectViev()
@@ -19,9 +23,21 @@ ProjectViev::~ProjectViev()
 
 void ProjectViev::on_pushButtonAdd_clicked()
 {
-    //Create Our QListWidge
-    //Add Our Item To Our List
-    ui->listWidgetProjects->addItem("itm");
-    //ui->listWidgetProjects->
+
+}
+
+
+void ProjectViev::on_listWidgetProjects_itemPressed(QListWidgetItem *item)
+{
+    ui->listWidgetTasks->clear();
+    QVector<QString> vectorOfTasks =m_ProjectsBuffer->GetListOfTask(item->text());
+    int iLengthOfVector=vectorOfTasks.length();
+    if(iLengthOfVector>0)
+    {
+        for(int i=0;i<iLengthOfVector;i++)
+        {
+           ui->listWidgetTasks->addItem(vectorOfTasks[i]);
+        }
+    }
 }
 

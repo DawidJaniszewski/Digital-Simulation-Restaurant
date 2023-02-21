@@ -2,7 +2,7 @@
 #include "./ui_TimeMeter.h"
 #include "ProjectViev.h"
 #include <QtWidgets>
-
+const QString DATE_FORMAT="yyyy.MM.dd HH:mm";
 TimeMeter::TimeMeter(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::TimeMeter)
@@ -18,6 +18,9 @@ TimeMeter::TimeMeter(QWidget *parent)
     m_ProjectsBuffer->AddTaskToProject("Test Project2", "task3");
     ui->comboBoxProject->addItems(m_ProjectsBuffer->GetListOfProjects());
     ui->comboBoxTask->addItems(m_ProjectsBuffer->GetListOfTask(ui->comboBoxProject->currentText()));
+    m_iColumnMax=5;
+    m_iRowMax=0;
+    ui->tableWidgetSummary->horizontalScrollBar()->hide();
 }
 
 
@@ -38,15 +41,19 @@ TimeMeter::~TimeMeter()
 
 void TimeMeter::on_pushButtonStop_clicked()
 {
-    m_oEndTime=QDateTime::currentDateTime();
-    QString tst=secondsToString(m_oStartTime.secsTo(m_oEndTime));
+    m_EndTime=QDateTime::currentDateTime();
+    QString tst=secondsToString(m_StartTime.secsTo(m_EndTime));
     ui->Time_controlTemporary->setText(tst);
 }
 
 void TimeMeter::on_pushButtonStart_clicked()
 {
-    m_oStartTime=QDateTime::currentDateTime();
-    ui->Time_controlTemporary->setText(m_oStartTime.toString("yyyy.MM.dd//HH:mm"));
+    m_StartTime=QDateTime::currentDateTime();
+    ui->Time_controlTemporary->setText(m_StartTime.toString(DATE_FORMAT));
+
+
+    RefreshTableWiewOnStartTask();
+        m_iRowMax++;
 }
 
 void TimeMeter::on_pushButtonAdd_clicked()
@@ -59,7 +66,20 @@ void TimeMeter::on_pushButtonAdd_clicked()
 
 void TimeMeter::on_comboBoxProject_currentTextChanged(const QString &arg1)
 {
-     ui->comboBoxTask->clear();
-     ui->comboBoxTask->addItems(m_ProjectsBuffer->GetListOfTask(arg1));
+    ui->comboBoxTask->clear();
+    ui->comboBoxTask->addItems(m_ProjectsBuffer->GetListOfTask(arg1));
+}
+
+void TimeMeter::RefreshTableWiewOnStartTask()
+{
+    ui->tableWidgetSummary->insertRow(ui->tableWidgetSummary->rowCount());
+    QVector<QTableWidgetItem*> TableVectorWithColumn;
+    TableVectorWithColumn.push_back( new QTableWidgetItem(ui->comboBoxProject->currentText()));
+    TableVectorWithColumn.push_back( new QTableWidgetItem(ui->comboBoxTask->currentText()));
+    TableVectorWithColumn.push_back( new QTableWidgetItem(m_StartTime.toString(DATE_FORMAT)));
+   for(int i=0;i<TableVectorWithColumn.size();i++)
+   {
+       ui->tableWidgetSummary->setItem(m_iRowMax, i, TableVectorWithColumn[i]);
+   }
 }
 

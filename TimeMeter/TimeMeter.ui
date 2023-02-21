@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>446</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,10 +29,18 @@
      <rect>
       <x>10</x>
       <y>161</y>
-      <width>501</width>
+      <width>511</width>
       <height>241</height>
      </rect>
     </property>
+    <property name="autoScroll">
+     <bool>false</bool>
+    </property>
+    <row>
+     <property name="text">
+      <string>1.</string>
+     </property>
+    </row>
     <column>
      <property name="text">
       <string>Project</string>

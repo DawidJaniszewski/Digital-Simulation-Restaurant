@@ -29,10 +29,13 @@ private slots:
     void on_comboBoxProject_currentTextChanged(const QString &arg1);
 
 private:
+    void RefreshTableWiewOnStartTask();
    QString secondsToString(qint64 seconds);
     Ui::TimeMeter *ui;
-    QDateTime m_oStartTime;
-    QDateTime m_oEndTime;
+    QDateTime m_StartTime;
+    QDateTime m_EndTime;
     ProjectsBuffer* m_ProjectsBuffer;
+    int m_iColumnMax;
+    int m_iRowMax;
 };
 #endif // TIMEMETER_H

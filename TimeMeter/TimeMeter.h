@@ -30,6 +30,7 @@ private slots:
 
 private:
     void RefreshTableWiewOnStartTask();
+    void RefreshTableWiewOnEndTask();
    QString secondsToString(qint64 seconds);
     Ui::TimeMeter *ui;
     QDateTime m_StartTime;

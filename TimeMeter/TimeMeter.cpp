@@ -2,6 +2,7 @@
 #include "./ui_TimeMeter.h"
 #include "ProjectViev.h"
 #include <QtWidgets>
+#include <QThread>
 const QString DATE_FORMAT="yyyy.MM.dd HH:mm";
 TimeMeter::TimeMeter(QWidget *parent)
     : QMainWindow(parent)
@@ -28,7 +29,7 @@ QString TimeMeter::secondsToString(qint64 seconds)
 {
   const qint64 DAY = 86400;
   QTime time = QTime(0,0).addSecs(seconds % DAY);
-  return QString("%2 hours, %3 minutes, %4 seconds").arg(time.hour()).arg(time.minute()).arg(time.second());
+  return QString("%2:%3:%4").arg(time.hour()).arg(time.minute()).arg(time.second());
 }
 
 
@@ -42,8 +43,8 @@ TimeMeter::~TimeMeter()
 void TimeMeter::on_pushButtonStop_clicked()
 {
     m_EndTime=QDateTime::currentDateTime();
-    QString tst=secondsToString(m_StartTime.secsTo(m_EndTime));
-    ui->Time_controlTemporary->setText(tst);
+    RefreshTableWiewOnEndTask();
+        m_iRowMax++;
 }
 
 void TimeMeter::on_pushButtonStart_clicked()
@@ -53,7 +54,7 @@ void TimeMeter::on_pushButtonStart_clicked()
 
 
     RefreshTableWiewOnStartTask();
-        m_iRowMax++;
+
 }
 
 void TimeMeter::on_pushButtonAdd_clicked()
@@ -81,5 +82,13 @@ void TimeMeter::RefreshTableWiewOnStartTask()
    {
        ui->tableWidgetSummary->setItem(m_iRowMax, i, TableVectorWithColumn[i]);
    }
+}
+
+void TimeMeter::RefreshTableWiewOnEndTask()
+{
+    int test=ui->tableWidgetSummary->columnCount();
+    ui->tableWidgetSummary->setItem(m_iRowMax, ui->tableWidgetSummary->columnCount()-2,new QTableWidgetItem( m_EndTime.toString(DATE_FORMAT)));
+    QString TimeLength=secondsToString(m_StartTime.secsTo(m_EndTime));
+    ui->tableWidgetSummary->setItem(m_iRowMax, ui->tableWidgetSummary->columnCount()-1,new QTableWidgetItem(TimeLength));
 }
 

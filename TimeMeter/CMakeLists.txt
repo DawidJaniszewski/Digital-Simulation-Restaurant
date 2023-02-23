@@ -19,6 +19,7 @@ set(PROJECT_SOURCES
         ProjectsBuffer.h
         ProjectsBuffer.cpp
         ProjectViev.h ProjectViev.cpp ProjectViev.ui
+
         TimeMeter.ui
 )
 
